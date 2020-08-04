@@ -92,7 +92,30 @@ Redmine::Plugin.register :redmine_tagging do
   end
 end
 
-ActionDispatch::Callbacks.to_prepare do
+def init
+  Dir::foreach(File.join(File.dirname(__FILE__), 'lib')) do |file|
+    next unless /\.rb$/ =~ file
+    require_dependency file
+  end
+end
+
+if Rails::VERSION::MAJOR >= 5
+  ActiveSupport::Reloader.to_prepare do
+    #init
+    ActionView::Base.send :include, TaggingHelper
+  end
+elsif Rails::VERSION::MAJOR >= 3
+  ActionDispatch::Callbacks.to_prepare do
+    init
+    ActionView::Base.send :include, TaggingHelper
+  end
+else
+  Dispatcher.to_prepare :user_search do
+    init
+  end
+end
+
+ActiveSupport::Reloader.to_prepare do
   require 'tagging_plugin/tagging_patches'
   require 'tagging_plugin/api_template_handler_patch'
   require 'redmine_tagging'

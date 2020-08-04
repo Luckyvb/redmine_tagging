@@ -1,4 +1,4 @@
-class ScrubBody < ActiveRecord::Migration
+class ScrubBody < Rails.version < '5.0' ? ActiveRecord::Migration : ActiveRecord::Migration[5.0]
   def up
     Issue.where("description like '%{{tag(%'").each {|issue|
       issue.description = issue.description.gsub(/[{]{2}tag[(][^)]*[)][}]{2}/i, '')

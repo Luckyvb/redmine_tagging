@@ -5,4 +5,12 @@ ru:
   tagging_issues_inline: "Использовать теги из описаний задач"
   detach: "Отделить"
   notice_successful_detached: "Тег успешно отвязан от всех тикетов проекта"
+  tagging_sidebar_tagcloud: "Показывать облако тэгов на боковой панели задач"
+  tagging_dynamic_font_size: "Размер шрифта для облка тэгов зависит от количесьва используемых тэгов"
+  tagging_tab_label: "Тэги"
+  label_tagname: "Название тэга"
+  field_tag: "Тэг"
+
+  tags: "Тэги"
+  append_tags: "Не заменить, а добавить тэги"
   tags_in_project: "Теги в проекте"

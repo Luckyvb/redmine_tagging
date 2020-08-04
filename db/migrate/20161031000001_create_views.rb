@@ -1,4 +1,4 @@
-class CreateViews < ActiveRecord::Migration
+class CreateViews < Rails.version < '5.0' ? ActiveRecord::Migration : ActiveRecord::Migration[5.0]
   def up
     execute 'DROP VIEW IF EXISTS issue_tags'
 
